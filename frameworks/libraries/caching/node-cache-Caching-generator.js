@@ -1,10 +1,10 @@
 
 const NodeCache=require('node-cache')
 const cache=new NodeCache({
-    stdTTL:60*60*1,
-    checkperiod:60*60*1*0.2,
-    useClones:false
+    useClones:false,
+    checkperiod:1800
 })
+
 
 const {
     Get,
@@ -16,7 +16,6 @@ const {
     MultipleSet
 
 }=require('../../../core/caching/caching-manager')({cache})
-
 
 module.exports=Object.freeze({
     Get,
