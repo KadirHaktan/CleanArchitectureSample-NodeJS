@@ -1,5 +1,5 @@
 
-function CachingManagerFactory({cache,seconds}){
+function CachingManagerFactory({cache}){
 
 
     return Object.freeze({
@@ -17,20 +17,26 @@ function CachingManagerFactory({cache,seconds}){
     function GetOrSet(key,storeFunction){
         const value=Get(key)
 
+        console.log(cache.data)
+
         if(value){
             return Promise.resolve(value)
+        }else{
+            return storeFunction().then((result)=>{
+                Set(key,result)
+                return Promise.resolve(result)
+            }).catch((error)=>{
+                return Promise.reject(error)
+            })
         }
 
-        return storeFunction().then((result)=>{
-            Set(key,result)
-            return result
-        })
+       
+
+       
     }
 
-
-
     function Set(key,val){
-        return cache.set(key,val,seconds)
+        return cache.set(key,val)
     }
 
     function MultipleSet(...objectArrays){
