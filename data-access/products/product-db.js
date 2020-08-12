@@ -27,12 +27,12 @@ function makeProductDb({ExecQuery}) {
 
     async function GetById(id) {
     
-        sql=`SELECT * FROM Products WHERE Products.ProductID==${id}`
+        sql=`SELECT * FROM Products WHERE Products.ProductID=${id}`
         return ExecQuery(sql)
     }
 
     async function GetIdByName({ProductName}={}) {
-        sql=`SELECT * FROM Products WHERE Products.ProductName==${ProductName}`
+        sql=`SELECT * FROM Products WHERE Products.ProductName=${ProductName}`
         return ExecQuery(sql)
     }
 

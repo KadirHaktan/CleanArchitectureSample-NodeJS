@@ -3,7 +3,7 @@
 const {hash,genSalt}=require('bcryptjs')
 let Validate = require('../../core/validation/user-validate')
 
-const Hash=require('../../core/utils/hash/hash-adapter')({
+const Hash=require('../../core/utils/security/hash/hash-adapter')({
     hash,
     generateSalt:genSalt
 

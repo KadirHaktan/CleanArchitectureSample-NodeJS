@@ -1,14 +1,17 @@
 
 
 const {NotFoundError}=require('../../core/utils/errors/index')
-function MakeGetProducts({makeProductDb}){
+function MakeGetProducts({makeProductDb,GetOrSet}){
     return async function getProducts(id=null){
-        
         if(!id){
-            return await makeProductDb.GetAll()
+            return GetOrSet("allProducts",async()=>{
+                return await makeProductDb.GetAll()
+            })
         }
 
-        return await ProductExists(id)
+         return GetOrSet(id,async()=>{
+             return await makeProductDb.GetById(id)
+         })
         
     }
 
@@ -20,6 +23,7 @@ function MakeGetProducts({makeProductDb}){
         }
         return product
     }
+
 }
 
 module.exports=MakeGetProducts

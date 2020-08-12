@@ -17,8 +17,6 @@ function CachingManagerFactory({cache}){
     function GetOrSet(key,storeFunction){
         const value=Get(key)
 
-        console.log(cache.data)
-
         if(value){
             return Promise.resolve(value)
         }else{
@@ -29,9 +27,6 @@ function CachingManagerFactory({cache}){
                 return Promise.reject(error)
             })
         }
-
-       
-
        
     }
 

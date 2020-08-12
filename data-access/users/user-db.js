@@ -20,6 +20,7 @@ function makeUserDb({ExecQuery}) {
 
     async function GetById(id) {
         sql = `SELECT * FROM users WHERE users.Id=${id}`
+        console.log(sql)
         return ExecQuery(sql)
     }
 
