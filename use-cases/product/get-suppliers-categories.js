@@ -1,12 +1,12 @@
 const {NotFoundError} = require('../../core/utils/errors/index')
 
 
-function MakeGetProductsWithSuppliersAndCategories({makeProductDb}) {
+function MakeGetProductsWithSuppliersAndCategories({makeProductDb,GetOrSet}) {
     return async function getProductsWithSuppliersAndCategories(id = null) {
         if (!id) {
-            return await makeProductDb.GetSupplierAndProduct()
+            return GetOrSet("products-suppliers-categories",async()=>await makeProductDb.GetSupplierAndProduct())
         }
-        return  await ProductExists(id)
+        return await ProductExists(id)
 
     }
 
@@ -17,7 +17,7 @@ function MakeGetProductsWithSuppliersAndCategories({makeProductDb}) {
             throw new NotFoundError('Product can not be found')
         }
 
-        return product
+        return GetOrSet(id,async()=>product)
     }
 }
 
