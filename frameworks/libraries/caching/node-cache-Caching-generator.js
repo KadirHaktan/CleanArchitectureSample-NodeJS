@@ -1,8 +1,8 @@
 
 const NodeCache=require('node-cache')
 const cache=new NodeCache({
-    stdTTL:3600,
-    checkperiod:3600*0.2,
+    stdTTL:60*60*1,
+    checkperiod:60*60*1*0.2,
     useClones:false
 })
 
